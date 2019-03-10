@@ -36,7 +36,9 @@ public:
             if(num > INT_MAX/10 || (num == INT_MAX / 10 && (str[i]-'0') > INT_MAX % 10)){
                 return sign == -1 ? INT_MIN : INT_MAX;
             }
-            num = num * 10 + str[i] - '0';
+//             num = num * 10 + str[i] - '0';
+            //39行，应该加上括号，要不然如输入"2147483646"时会先计算 2147483640 + 54造成overflow, num = num * 10 + (str[i] - '0');
+            num = num * 10 + (str[i] - '0');
         }
 
         return num * sign;
